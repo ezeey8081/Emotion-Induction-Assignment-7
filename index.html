@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emotion Induction Assignment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .instructions {
+            background-color: #f0f7ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        textarea, select, input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        .emotion-row {
+            background-color: #fff;
+            margin-bottom: 10px;
+        }
+        .reflection {
+            margin-top: 30px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .ratings {
+            margin: 20px 0;
+        }
+        .rating-item {
+            margin-bottom: 15px;
+        }
+        .rating-scale {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 5px;
+        }
+        .rating-scale label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+        .rating-scale input {
+            margin-top: 5px;
+        }
+        .rating-labels {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+        .rating-labels span {
+            font-size: 12px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Emotion Induction Assignment</h1>
+        
+        <div class="instructions">
+            <h3>Instructions</h3>
+            <p>Complete the chart below for each emotion by:</p>
+            <ol>
+                <li>Describing a specific behavior or situation from others that typically triggers this emotion in you</li>
+                <li>Rating the intensity of the emotional response (1 = Mild, 5 = Strong)</li>
+                <li>Describing your typical behavioral reaction</li>
+                <li>Stating what you wish the other person had done instead</li>
+            </ol>
+            <p>After completing the chart, write a reflection (approximately 300 words) on what you learned.</p>
+        </div>
+
+        <form id="emotionForm">
+            <h2>Deliverable 1: Emotion Chart</h2>
+            
+            <table id="emotionTable">
+                <thead>
+                    <tr>
+                        <th>Core Emotion</th>
+                        <th>Second-Ring Emotion</th>
+                        <th>Behavior That Triggers This</th>
+                        <th>Intensity (1-5)</th>
+                        <th>My Reaction</th>
+                        <th>What I Wish They'd Done</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Example row -->
+                    <tr>
+                        <td>Fearful</td>
+                        <td>Anxious</td>
+                        <td><textarea name="trigger_anxious" placeholder="When someone sends last-minute requests with no context"></textarea></td>
+                        <td>
+                            <select name="intensity_anxious">
+                                <option value="1">1 (Mild)</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4" selected>4</option>
+                                <option value="5">5 (Strong)</option>
+                            </select>
+                        </td>
+                        <td><textarea name="reaction_anxious" placeholder="I over-function, cancel my plans, and feel resentful"></textarea></td>
+                        <td><textarea name="wish_anxious" placeholder="I wish they'd given me notice or context"></textarea></td>
+                    </tr>
+                    
+                    <!-- Angry emotions -->
+                    <tr>
+                        <td>Angry</td>
+                        <td>Resentful</td>
+                        <td><textarea name="trigger_resentful" placeholder="Describe the trigger..."></textarea></td>
+                        <td>
+                            <select name="intensity_resentful">
+                                <option value="1">1 (Mild)</option>
+                                <option value="2">2</option>
+                                <option value="3" selected>3</option>
+                                <option value="4">4</option>
+                                <option value="5">5 (Strong)</option>
+                            </select>
+                        </td>
+                        <td><textarea name="reaction_resentful" placeholder="Describe your reaction..."></textarea></td>
+                        <td><textarea name="wish_resentful" placeholder="What you wish they'd done..."></textarea></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Angry</td>
+                        <td>Frustrated</td>
+                        <td><textarea name="trigger_frustrated" placeholder="Describe the trigger..."></textarea></td>
+                        <td>
+                            <select name="intensity_frustrated">
+                                <option value="1">1 (Mild)</option>
+                                <option value="2">2</option>
+                                <option value="3" selected>3</option>
+                                <option value="4">4</option>
+                                <option value="5">5 (Strong)</option>
+                            </select>
+                        </td>
+                        <td><textarea name="reaction_frustrated" placeholder="Describe your reaction..."></textarea></td>
+                        <td><textarea name="wish_frustrated" placeholder="What you wish they'd done..."></textarea></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Angry</td>
+                        <td>Irritated</td>
+                        <td><textarea name="trigger_irritated" placeholder="Describe the trigger..."></textarea></td>
+                        <td>
+                            <select name="intensity_irritated">
+                                <option value="1">1 (Mild)</option>
+                                <option value="2">2</option>
+                                <option value="3" selected>3</option>
+                                <option value="4">4</option>
+                                <option value="5">5 (Strong)</option>
+                            </select>
+                        </td>
+                        <td><textarea name="reaction_irritated" placeholder="Describe your reaction..."></textarea></td>
+                        <td><textarea name="wish_irritated" placeholder="What you wish they'd done..."></textarea></td>
+                    </tr>
+                    
+                    <!-- Fearful emotions -->
+                    <tr>
+                        <td>Fearful</td>
+                        <td>Scared</td>
+                        <td><textarea name="trigger_scared" placeholder="Describe the trigger..."></textarea></td>
+                        <td>
+                            <select name="intensity_scared">
+                                <option value="1">1 (Mild)</option>
+                                <option value="2">2</option>
+                                <option value="3" selected>3</option>
+                                <option value="4">4</option>
+                                <option value="5">5 (Strong)</option>
+                            </select>
+                        </td>
+                        <td><textarea name="reaction_scared" placeholder="Describe your reaction..."></textarea></td>
+                        <td><textarea name="wish_scared" placeholder="What you wish they'd done..."></textarea></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Fearful</td>
+                        <td>Overwhelmed</td>
+                        <td><textarea name="trigger_overwhelmed" placeholder="Describe the trigger..."></textarea></td>
+                        <td>
+                            <select name="intensity_overwhelmed">
+                                <option value="1">1 (Mild)</option>
+                                <option value="2">2</option>
+                                <option value="3" selected>3</option>
+                                <option value="4">4</option>
+                                <option value="5">5 (Strong)</option>
+                            </select>
+                        </td>
+                        <td><textarea name="reaction_overwhelmed" placeholder="Describe your reaction..."></textarea></td>
+                        <td><textarea name="wish_overwhelmed" placeholder="What you wish they'd done..."></textarea></td>
+                    </tr>
+                    
+                    <!-- Sad emotions -->
+                    <tr>
+                        <td>Sad</td>
+                        <td>Disappointed</td>
+                        <td><textarea name="trigger_disappointed" placeholder="Describe the trigger..."></textarea></td>
+                        <td>
+                            <select name="intensity_disappointed">
+                                <option value="1">1 (Mild)</option>
+                                <option value="2">2</option>
+                                <option value="3" selected>3</option>
+                                <option value="4">4</option>
+                                <option value="5">5 (Strong)</option>
+                            </select>
+                        </td>
+                        <td><textarea name="reaction_disappointed" placeholder="Describe your reaction..."></textarea></td>
+                        <td><textarea name="wish_disappointed" placeholder="What you wish they'd done..."></textarea></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Sad</td>
+                        <td>Lonely</td>
+                        <td><textarea name="trigger_lonely" placeholder="Describe the trigger..."></textarea></td>
+                        <td>
+                            <select name="intensity_lonely">
+                                <option value="1">1 (Mild)</option>
+                                <option value="2">2</option>
+                                <option value="3" selected>3</option>
+                                <option value="4">4</option>
+                                <option value="5">5 (Strong)</option>
+                            </select>
+                        </td>
+                        <td><textarea name="reaction_lonely" placeholder="Describe your reaction..."></textarea></td>
+                        <td><textarea name="wish_lonely" placeholder="What you wish they'd done..."></textarea></td>
+                    </tr>
+                    
+                    <!-- Joyful emotions -->
+                    <tr>
+                        <td>Joyful</td>
+                        <td>Happy</td>
+                        <td><textarea name="trigger_happy" placeholder="Describe the trigger..."></textarea></td>
+                        <td>
+                            <select name="intensity_happy">
+                                <option value="1">1 (Mild)</option>
+                                <option value="2">2</option>
+                                <option value="3" selected>3</option>
+                                <option value="4">4</option>
+                                <option value="5">5 (Strong)</option>
+                            </select>
+                        </td>
+                        <td><textarea name="reaction_happy" placeholder="Describe your reaction..."></textarea></td>
+                        <td><textarea name="wish_happy" placeholder="What you wish they'd done..."></textarea></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Joyful</td>
+                        <td>Excited</td>
+                        <td><textarea name="trigger_excited" placeholder="Describe the trigger..."></textarea></td>
+                        <td>
+                            <select name="intensity_excited">
+                                <option value="1">1 (Mild)</option>
+                                <option value="2">2</option>
+                                <option value="3" selected>3</option>
+                                <option value="4">4</option>
+                                <option value="5">5 (Strong)</option>
+                            </select>
+                        </td>
+                        <td><textarea name="reaction_excited" placeholder="Describe your reaction..."></textarea></td>
+                        <td><textarea name="wish_excited" placeholder="What you wish they'd done..."></textarea></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="reflection">
+                <h2>Deliverable 2: Reflection</h2>
+                <p>After completing the spreadsheet, write a brief essay that explores what you learned (approximately 300 words).</p>
+                
+                <h3>Guiding Questions:</h3>
+                <ul>
+                    <li>What surprised you about how certain behaviors from others affect you emotionally?</li>
+                    <li>Are there recurring themes or patterns in what tends to trigger strong emotions?</li>
+                    <li>How might greater awareness of these triggers help you respond differently in leadership or group settings?</li>
+                    <li>Is there one relationship in your life where this insight could make a difference?</li>
+                    <li>How might this awareness change how you manage or lead others—especially under pressure, when giving feedback, or when receiving criticism?</li>
+                    <li>What's one specific thing you will do differently this week based on what you've learned?</li>
+                </ul>
+                
+                <textarea id="reflection" name="reflection" placeholder="Write your reflection here (approximately 300 words)..." style="width: 100%; min-height: 200px;"></textarea>
+                
+                <div class="ratings">
+                    <h3>Self-Rating Questions:</h3>
+                    
+                    <div class="rating-item">
+                        <p>On a scale of 1–10, how new is this material to you?</p>
+                        <div class="rating-labels">
+                            <span>1 (Not at all)</span>
+                            <span>10 (Very familiar)</span>
+                        </div>
+                        <div class="rating-scale">
+                            <label><input type="radio" name="rating_familiarity" value="1">1</label>
+                            <label><input type="radio" name="rating_familiarity" value="2">2</label>
+                            <label><input type="radio" name="rating_familiarity" value="3">3</label>
+                            <label><input type="radio" name="rating_familiarity" value="4">4</label>
+                            <label><input type="radio" name="rating_familiarity" value="5" checked>5</label>
+                            <label><input type="radio" name="rating_familiarity" value="6">6</label>
+                            <label><input type="radio" name="rating_familiarity" value="7">7</label>
+                            <label><input type="radio" name="rating_familiarity" value="8">8</label>
+                            <label><input type="radio" name="rating_familiarity" value="9">9</label>
+                            <label><input type="radio" name="rating_familiarity" value="10">10</label>
+                        </div>
+                    </div>
+                    
+                    <div class="rating-item">
+                        <p>On a scale of 1–10, how important do you feel this information is to your life?</p>
+                        <div class="rating-labels">
+                            <span>1 (Not at all)</span>
+                            <span>10 (Very important)</span>
+                        </div>
+                        <div class="rating-scale">
+                            <label><input type="radio" name="rating_importance" value="1">1</label>
+                            <label><input type="radio" name="rating_importance" value="2">2</label>
+                            <label><input type="radio" name="rating_importance" value="3">3</label>
+                            <label><input type="radio" name="rating_importance" value="4">4</label>
+                            <label><input type="radio" name="rating_importance" value="5" checked>5</label>
+                            <label><input type="radio" name="rating_importance" value="6">6</label>
+                            <label><input type="radio" name="rating_importance" value="7">7</label>
+                            <label><input type="radio" name="rating_importance" value="8">8</label>
+                            <label><input type="radio" name="rating_importance" value="9">9</label>
+                            <label><input type="radio" name="rating_importance" value="10">10</label>
+                        </div>
+                    </div>
+                    
+                    <div class="rating-item">
+                        <p>On a scale of 1–10, how developed do you feel you are at these practices?</p>
+                        <div class="rating-labels">
+                            <span>1 (Not developed)</span>
+                            <span>10 (Very developed)</span>
+                        </div>
+                        <div class="rating-scale">
+                            <label><input type="radio" name="rating_development" value="1">1</label>
+                            <label><input type="radio" name="rating_development" value="2">2</label>
+                            <label><input type="radio" name="rating_development" value="3">3</label>
+                            <label><input type="radio" name="rating_development" value="4">4</label>
+                            <label><input type="radio" name="rating_development" value="5" checked>5</label>
+                            <label><input type="radio" name="rating_development" value="6">6</label>
+                            <label><input type="radio" name="rating_development" value="7">7</label>
+                            <label><input type="radio" name="rating_development" value="8">8</label>
+                            <label><input type="radio" name="rating_development" value="9">9</label>
+                            <label><input type="radio" name="rating_development" value="10">10</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 30px;">
+                <button type="button" id="downloadXLSX">Download as CSV (Excel) File</button>
+                <button type="button" id="downloadPDF">Download as Text File</button>
+            </div>
+            <div style="margin-top: 10px; color: #666; font-size: 14px;">
+                <p><strong>Note:</strong> The CSV file can be opened in Excel. The text file contains all your responses in a simple text format.</p>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Simple plain text download function that will work in all browsers
+        function downloadAsTextFile(filename, text) {
+            var element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+            element.setAttribute('download', filename);
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
+        
+        // Excel download
+        document.getElementById('downloadXLSX').addEventListener('click', function() {
+            // Get form data
+            const formData = new FormData(document.getElementById('emotionForm'));
+            
+            // Create a CSV string
+            let csvContent = "Core Emotion,Second-Ring Emotion,Behavior That Triggers This,Intensity (1-5),My Reaction,What I Wish They'd Done\n";
+            
+            // Add example row
+            csvContent += `Fearful,Anxious,"${formData.get('trigger_anxious') || ''}",${formData.get('intensity_anxious') || ''},"${formData.get('reaction_anxious') || ''}","${formData.get('wish_anxious') || ''}"\n`;
+            
+            // Add other emotions
+            const emotions = [
+                { core: 'Angry', second: 'Resentful' },
+                { core: 'Angry', second: 'Frustrated' },
+                { core: 'Angry', second: 'Irritated' },
+                { core: 'Fearful', second: 'Scared' },
+                { core: 'Fearful', second: 'Overwhelmed' },
+                { core: 'Sad', second: 'Disappointed' },
+                { core: 'Sad', second: 'Lonely' },
+                { core: 'Joyful', second: 'Happy' },
+                { core: 'Joyful', second: 'Excited' }
+            ];
+            
+            emotions.forEach(emotion => {
+                const secondLower = emotion.second.toLowerCase();
+                csvContent += `${emotion.core},${emotion.second},"${formData.get(`trigger_${secondLower}`) || ''}",${formData.get(`intensity_${secondLower}`) || ''},"${formData.get(`reaction_${secondLower}`) || ''}","${formData.get(`wish_${secondLower}`) || ''}"\n`;
+            });
+            
+            // Add reflection
+            csvContent += "\n\nREFLECTION\n";
+            csvContent += `${formData.get('reflection') || ''}\n\n`;
+            
+            // Add ratings
+            csvContent += "SELF-RATING QUESTIONS\n";
+            csvContent += `How new is this material to you? (1-10): ${formData.get('rating_familiarity') || ''}\n`;
+            csvContent += `How important do you feel this information is to your life? (1-10): ${formData.get('rating_importance') || ''}\n`;
+            csvContent += `How developed do you feel you are at these practices? (1-10): ${formData.get('rating_development') || ''}\n`;
+            
+            // Download the CSV file
+            downloadAsTextFile('Emotion_Induction_Assignment.csv', csvContent);
+            
+            alert('File downloaded successfully! You can open this CSV file in Excel.');
+        });
+        
+        // PDF download (as plain text alternative)
+        document.getElementById('downloadPDF').addEventListener('click', function() {
+            // Get form data
+            const formData = new FormData(document.getElementById('emotionForm'));
+            
+            // Create a text representation
+            let textContent = "EMOTION INDUCTION ASSIGNMENT\n\n";
+            textContent += "EMOTION CHART:\n\n";
+            
+            // Headers
+            textContent += "Core Emotion | Second-Ring Emotion | Behavior That Triggers This | Intensity | My Reaction | What I Wish They'd Done\n";
+            textContent += "------------|-------------------|---------------------------|----------|------------|--------------------\n";
+            
+            // Add example row
+            textContent += `Fearful | Anxious | ${formData.get('trigger_anxious') || ''} | ${formData.get('intensity_anxious') || ''} | ${formData.get('reaction_anxious') || ''} | ${formData.get('wish_anxious') || ''}\n`;
+            
+            // Add other emotions
+            const emotions = [
+                { core: 'Angry', second: 'Resentful' },
+                { core: 'Angry', second: 'Frustrated' },
+                { core: 'Angry', second: 'Irritated' },
+                { core: 'Fearful', second: 'Scared' },
+                { core: 'Fearful', second: 'Overwhelmed' },
+                { core: 'Sad', second: 'Disappointed' },
+                { core: 'Sad', second: 'Lonely' },
+                { core: 'Joyful', second: 'Happy' },
+                { core: 'Joyful', second: 'Excited' }
+            ];
+            
+            emotions.forEach(emotion => {
+                const secondLower = emotion.second.toLowerCase();
+                textContent += `${emotion.core} | ${emotion.second} | ${formData.get(`trigger_${secondLower}`) || ''} | ${formData.get(`intensity_${secondLower}`) || ''} | ${formData.get(`reaction_${secondLower}`) || ''} | ${formData.get(`wish_${secondLower}`) || ''}\n`;
+            });
+            
+            // Add reflection
+            textContent += "\n\nREFLECTION:\n\n";
+            textContent += `${formData.get('reflection') || ''}\n\n`;
+            
+            // Add ratings
+            textContent += "SELF-RATING QUESTIONS:\n\n";
+            textContent += `How new is this material to you? (1-10): ${formData.get('rating_familiarity') || ''}\n`;
+            textContent += `How important do you feel this information is to your life? (1-10): ${formData.get('rating_importance') || ''}\n`;
+            textContent += `How developed do you feel you are at these practices? (1-10): ${formData.get('rating_development') || ''}\n`;
+            
+            // Download the text file
+            downloadAsTextFile('Emotion_Induction_Assignment.txt', textContent);
+            
+            alert('File downloaded successfully as a text document!');
+        });
+    </script>
+</body>
+</html>
